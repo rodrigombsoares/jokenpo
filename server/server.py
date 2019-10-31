@@ -21,12 +21,12 @@ def handle_game(client_sock):
     # receive turn
     player_hand = client_sock.recv(1024).decode('utf-8')
     player_hand = handle_hand(player_hand)
-    
+
     # get winner
     winner = get_winner(player_hand, pc_hand)
 
     # send a thank you message to the client.  
-    client_sock.send(('You said '+player_hand+'\nI said '+pc_hand+'\n'+winner).encode('utf-8'))
+    client_sock.send((pc_hand+'#'+winner).encode('utf-8'))
     
 
 while True:

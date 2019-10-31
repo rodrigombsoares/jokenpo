@@ -38,8 +38,8 @@ def get_winner(p_hand, pc_hand):
 		return 'tie'
 	elif delta < 0:
 		winner = table[delta]
-		return winner + ' wins'
+		return winner
 	elif delta > 0:
 		winner = table[delta-3]
-		return winner + ' wins'
+		return winner
 
