@@ -20,7 +20,8 @@ def handle_game(client_sock):
 
     # receive turn
     player_hand = client_sock.recv(1024).decode('utf-8')
-
+    player_hand = handle_hand(player_hand)
+    
     # get winner
     winner = get_winner(player_hand, pc_hand)
 

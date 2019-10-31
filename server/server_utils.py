@@ -1,9 +1,17 @@
 from random import randint
 
 hands = ['rock', 'paper', 'scissors']
+hands_map = {'r' : 'rock', 'p': 'paper','s':'scissors'}
 
 def rand_hand():
 	return hands[randint(0,2)]
+
+def handle_hand(player_hand):
+	player_hand.lower()
+	if(player_hand not in hands):
+		return hands_map[player_hand]
+	return player_hand
+
 
 
 def get_winner(p_hand, pc_hand):
