@@ -6,6 +6,13 @@ from client_utils import *
 
 BUTTON_WIDTH = 25
 WINDOW_GEOMETRY = "1000x600"
+RULES_TEXT = """Neste jogo você pode escolher entre três opções: pedra,papel ou tesoura.
+\n Caso você e seu adversário escolham duas opções iguais o resultado do jogo é empate.
+\n Pedra: ganha de tesoura
+\n Papel: ganha de pedra
+\n Tesoura: ganha de papel
+"""
+
 
 
 class Application:
@@ -29,6 +36,7 @@ class Application:
         self.root.destroy()
         self.root = tk.Tk()
         self.root.geometry(WINDOW_GEOMETRY)
+        self.root.title("Pedra, papel e tesoura")
         client = Client(choice)
         computer_hand, winner = get_results(client.get_data())
         img_rock = PhotoImage(file="../assets/rock3.png")
@@ -56,15 +64,16 @@ class Application:
         button_start = tk.Button(
             text="Jogar novamente", command=self.start_page, width=BUTTON_WIDTH)
         button_start.place(relx=0.4, rely=0.9, anchor=W)
-        button_start = tk.Button(
+        button_quit = tk.Button(
             text="Sair", command=lambda: self.root.destroy(), width=BUTTON_WIDTH)
-        button_start.place(relx=0.7, rely=0.9, anchor=W)
+        button_quit.place(relx=0.7, rely=0.9, anchor=W)
         self.root.mainloop()
 
     def start_page(self):
         self.root.destroy()
         self.root = tk.Tk()
         self.root.geometry(WINDOW_GEOMETRY)
+        self.root.title("Pedra, papel e tesoura")
         main_page_title = tk.Label(self.root, text="Pedra, papel e tesoura",)
         main_page_title.place(relx=0.5, rely=0.0, anchor=N)
         main_page_title.config(font=("Courier", 35))
@@ -89,13 +98,23 @@ class Application:
         self.root.destroy()
         self.root = tk.Tk()
         self.root.geometry("600x300")
+        self.root.title("Regras do Jogo")
         main_page_title = tk.Label(self.root, text="Pedra, papel e tesoura",)
         main_page_title.place(relx=0.5, rely=0.0, anchor=N)
         main_page_title.config(font=("Courier", 35))
+        text_rules = tk.Label(text = RULES_TEXT)
+        text_rules.place(relx = 0.5, rely = 0.5, anchor = CENTER)
+        text_rules.config(font=("Courier",13))
+        button_start = tk.Button(
+            text="Começar Jogo", command=self.start_page, width=BUTTON_WIDTH)
+        button_start.place(relx=0.5, rely=0.8, anchor=CENTER)
+        button_quit = tk.Button(text="Sair do Jogo",
+                                command=self.root.destroy, width=BUTTON_WIDTH)
+        button_quit.place(relx=0.5, rely=0.9, anchor=CENTER)
         self.root.mainloop()
-        return "rules"
 
     def main_screen(self):
+        self.root.title("Página principal")
         main_page_title = tk.Label(self.root, text="Pedra, papel e tesoura",)
         main_page_title.place(relx=0.5, rely=0.0, anchor=N)
         main_page_title.config(font=("Courier", 35))
